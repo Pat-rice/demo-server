@@ -4,8 +4,10 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.messaging.core.MessageSendingOperations;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.SendTo;
+import org.springframework.messaging.simp.annotation.SubscribeMapping;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -18,10 +20,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class Websocket {
 
+
     @MessageMapping("/hello")
-    @SendTo("/topic/greetings")
-    public String greeting(String message) throws Exception {
-        return "Hello, ahah";
+    @SendTo("/topic/prout")
+    public String greeting(String message) {
+
+        System.out.println(message);
+
+        return message;
     }
 
     @RequestMapping(value = "/hi", method = RequestMethod.GET)
