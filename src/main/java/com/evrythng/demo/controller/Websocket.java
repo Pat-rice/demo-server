@@ -21,11 +21,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class Websocket {
 
 
-    @MessageMapping("/hello")
-    @SendTo("/topic/prout")
-    public String greeting(String message) {
+    @MessageMapping("/image")
+//    @SendTo("/topic/prout")
+    public String receiveImageFromClient(String message) {
 
-        System.out.println(message);
 
         return message;
     }
