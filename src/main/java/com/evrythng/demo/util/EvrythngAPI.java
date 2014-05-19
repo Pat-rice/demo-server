@@ -6,12 +6,6 @@ import com.evrythng.java.wrapper.exception.EvrythngException;
 import com.evrythng.java.wrapper.service.ThngService;
 import com.evrythng.thng.resource.model.store.Location;
 import com.evrythng.thng.resource.model.store.Thng;
-import com.google.zxing.NotFoundException;
-import org.codehaus.jettison.json.JSONException;
-import org.codehaus.jettison.json.JSONObject;
-import org.springframework.beans.factory.annotation.Value;
-
-import java.io.IOException;
 
 /**
  * Created with IntelliJ IDEA.

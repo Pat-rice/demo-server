@@ -1,13 +1,11 @@
 package com.evrythng.demo.controller;
 
 import com.evrythng.demo.model.VirtualObject;
-import com.evrythng.demo.util.EvrythngAPI;
 import org.codehaus.jettison.json.JSONException;
 import org.codehaus.jettison.json.JSONObject;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
  * Created with IntelliJ IDEA.
