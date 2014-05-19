@@ -9,7 +9,7 @@ Applications could share this common virtual world, improving and maintaining it
 
 ###About this project:
 
-This project is using websockets to send data captured by a client device.
+This project is using websockets and is receiving data captured by a [client device](https://github.com/Pat-rice/demo-capture).
 The data sent to the server should be a QR code containing JSON data.
 In this example, an android mobile phone is used and it can also collect GEOlocation data.
 A simple STOMP protocol has been used over the web socket and this is not ideal to send images,
@@ -25,7 +25,7 @@ Otherwise a qr code scanner should be implemented on every devices.
     Streaming live data to server
     Handling data noise
     Display Virtual object in real time
-    3d "world map" of virtual objects
+    3D "world map" of virtual objects
     Notification when nearby a virtual object
     Replace STOMP protocol by binary
     3G/4G connections
