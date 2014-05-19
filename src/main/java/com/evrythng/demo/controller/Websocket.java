@@ -1,40 +1,53 @@
 package com.evrythng.demo.controller;
 
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
-import org.springframework.messaging.core.MessageSendingOperations;
+import com.evrythng.demo.model.VirtualObject;
+import com.evrythng.demo.util.EvrythngAPI;
+import org.codehaus.jettison.json.JSONException;
+import org.codehaus.jettison.json.JSONObject;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.SendTo;
-import org.springframework.messaging.simp.annotation.SubscribeMapping;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
  * Created with IntelliJ IDEA.
  * User: patrice
  * Date: 17/05/2014
+ * Mapping Websocket endpoints
  */
 @Controller
 public class Websocket {
 
-
     @MessageMapping("/image")
-//    @SendTo("/topic/prout")
-    public String receiveImageFromClient(String message) {
+    @SendTo("/topic/confirm")
+    public boolean receiveImageFromClient(String message) {
+        System.out.println(message);
+        boolean success = false;
+        JSONObject jo;
+        VirtualObject vo = new VirtualObject();
 
+        try {
+            jo = new JSONObject(message);
 
-        return message;
+            if(message.contains("longitude") && message.contains("latitude")) {
+                vo.setLongitude((Double) jo.get("longitude"));
+                vo.setLatitude((Double) jo.get("latitude"));
+            } else {
+                vo.setLongitude(0.0);
+                vo.setLatitude(0.0);
+            }
+
+            vo.setImgBase64((String) jo.get("imgBase64"));
+
+            vo.expandDataFromQRCode((String) jo.get("imgBase64"));
+
+            success = vo.serialize();
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        return success;
     }
 
-    @RequestMapping(value = "/hi", method = RequestMethod.GET)
-    public org.springframework.http.ResponseEntity<String> getPassesEventsByMatch() {
-
-        HttpHeaders responseHeaders = new HttpHeaders();
-        responseHeaders.setContentType(MediaType.APPLICATION_JSON);
-        ResponseEntity<String> response = new ResponseEntity<String>("hey !", responseHeaders, HttpStatus.OK);
-        return response;
-    }
 }

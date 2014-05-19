@@ -11,6 +11,7 @@
         http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd">
 
     <websocket:message-broker  application-destination-prefix="/app">
+        <websocket:transport send-timeout="15000" send-buffer-size="5242880" message-size="5000000" />
         <websocket:stomp-endpoint path="/websocket" >
             <websocket:sockjs/>
         </websocket:stomp-endpoint>
