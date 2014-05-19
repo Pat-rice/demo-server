@@ -39,4 +39,4 @@ Otherwise a qr code scanner should be implemented on every device.
 
 
 ###Example QR code for client
-![alt text](https://github.com/Pat-rice/demo-server/blob/master/QRCode.png "QRcode example")
+![QRCode example](https://raw.githubusercontent.com/Pat-rice/demo-server/master/QRCode.png "QRcode example")
